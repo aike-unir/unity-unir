@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerOld : MonoBehaviour
 {
     [SerializeField] float speed = 5f;
     [SerializeField] float runningSpeed = 10f;
@@ -38,14 +38,12 @@ public class PlayerController : MonoBehaviour
             // InputSystem.onAnyButtonPress.CallOnce(ctrl => Debug.Log($"Button {ctrl} was pressed on Device {ctrl.device}"));
         }
 
-        float verticalVelocity = 0f;
         float actualVelocity;
         private void Update()
         {
             if (mustJump)
             {
                 mustJump = false;
-                verticalVelocity = 10f;
             }
 
             actualVelocity = isRunning ? runningSpeed : speed;
