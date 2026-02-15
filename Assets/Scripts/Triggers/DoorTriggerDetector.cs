@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TriggerDetector : MonoBehaviour
 {
@@ -6,7 +7,19 @@ public class TriggerDetector : MonoBehaviour
     [SerializeField] Canvas detectedCanvas;
     [SerializeField] LayerMask layerMask;
     
+    
+    bool mustOpenDoor = false;
     void Update()
+    {
+        if (Keyboard.current.eKey.isPressed)
+        {
+            mustOpenDoor = true;
+        }
+
+    }
+
+
+    void FixedUpdate()
     {
         // Detectar los colisionadores en un radio
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius, layerMask);
@@ -17,12 +30,21 @@ public class TriggerDetector : MonoBehaviour
         {
             if (coll.CompareTag("DoorTrigger"))
             {
-                Debug.Log("Hay un DoorTrigger cerca");
                 anyDoorTriggerDetected = true;
+
+                if (mustOpenDoor)
+                {
+                    mustOpenDoor = false;
+                    InterruptorForDoors interruptor = coll.gameObject.GetComponent<InterruptorForDoors>();
+
+                    if (interruptor != null)
+                    {
+                        interruptor.OpenDoors();
+                    }
+                }
             }
         }
 
         detectedCanvas.gameObject.SetActive(anyDoorTriggerDetected);
-
     }
 }

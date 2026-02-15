@@ -13,7 +13,7 @@ public class TriggerDetectorRaycast : MonoBehaviour
         // Detectar con raycast el objeto al que mira
         RaycastHit hit;
         // Es aconsejable usar una distancia máxima en lugar de Mathf.Infinity
-        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, detectionRadius, layerMask))
         {
             if (hit.collider.CompareTag("DoorTrigger"))
             {
