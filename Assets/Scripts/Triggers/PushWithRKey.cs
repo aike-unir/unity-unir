@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PushWithRKey : MonoBehaviour
 {
-    [SerializeField] float maxPushDistance = 3f;
+    [SerializeField] float maxPushDistance = 1f;
     [SerializeField] float pushForce = 300f;
     [SerializeField] LayerMask layerMask = Physics.DefaultRaycastLayers;
 

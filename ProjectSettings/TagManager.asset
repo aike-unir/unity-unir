@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LimiteInferior
   - DoorTrigger
+  - Enemy
   layers:
   - Default
   - TransparentFX
